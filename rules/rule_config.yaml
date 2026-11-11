@@ -1,0 +1,22 @@
+rules:
+  tier_evaluation:
+    - id: R001
+      name: "VIP Discount Rule"
+      condition: "purchase_history_total > 1000 and is_active_member == True"
+      action: "apply_discount"
+      parameters:
+        discount_percentage: 20
+
+    - id: R002
+      name: "Standard Discount Rule"
+      condition: "purchase_history_total <= 1000 and is_active_member == True"
+      action: "apply_discount"
+      parameters:
+        discount_percentage: 5
+
+    - id: R003
+      name: "Guest Rejection Rule"
+      condition: "is_active_member == False"
+      action: "restrict_access"
+      parameters:
+        message: "Please sign up for an account to proceed."
